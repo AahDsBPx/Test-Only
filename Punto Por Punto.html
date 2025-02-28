@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto Por Punto Live Simulcast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        #player-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        iframe, video {
+            width: 100%;
+            height: 500px;
+        }
+        select {
+            padding: 10px;
+            margin: 20px 0;
+            width: 80%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Punto Por Punto Live Simulcast</h1>
+    <select id="channelSelector" onchange="changeChannel()">
+        <option value="">Select a Channel</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCJLj8-rMpGgTj-hwkS4ni9w">Rev. Fr. Darwin Gitgano-Punto por Punto (6PM-11PM)</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCvFeHhE02A8B7YpUW-MDEOA">Kaabag sa Simbahan</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCog1d24eOMeNWIhCNSMJ50Q">Bro. Wendell Talibong</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCuvZVq1Bppw7P6XYLb-mcRA">Pananampalataya at Katuwiran</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCbriIBcJJo6-y1YHmtuZIXw">Mr.Curious Catholic</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UC-KsBkTyrq8i47h2EMG2qEw">Katolikong Kaalaman</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCAmQIrt_sb0o9Ka2UzI4XYg">Mr. 721 Catholic</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCmL9K-76SzU0vFF1ZpMObcw">Katotohanan Ating Pag-usapan</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCsGqCwngiJ2hTE-Fxs2rFXQ">Bro. Romel A. Palma</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCF9PjbDadhNswpdf5N_C-lw">Pagsisiwalat sa Katotohanan</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCIU37HOb5iQdh99PuG3dqNw">Vicente Mejillano Jr.</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UC7E-LYc1wivk33iyt5bR5zQ">Vatican News</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCxIsefyl9g9A5SGWA4FvGIA">Vatican News EN</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCMwMcgY9BqCJrtfykyCAnBw">TV Maria</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCAzUdEY3ZqtcC_s4ZdDKm7Q">Veritas846</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UC5GQxgPgBGRIZp7OXVC69FQ">PESMA Plus</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCvwbLBTkuIwqNm9kHUqWRnw">Catholic Answers LIVE (7AM-9AM Philippine Time)</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCf_g0Fbc40iOeXpPmWjOafA">Lakbay Katoliko TV</option>
+        <option value="https://www.youtube.com/embed/live_stream?channel=UCcosshHBY51lOMYQp52nEPA">Bro. Kenneth Bustamante</option>
+        <option value="https://cdn3.wowza.com/1/QmVNUVhTNTZSS3Uz/YWQ0aHpi/hls/live/playlist.m3u8">EWTN (Asia-Pacific)</option>
+        <option value="https://cdn3.wowza.com/1/ZVBYYXFLLzE0c3NC/Qk1FMURC/hls/live/playlist.m3u8">EWTN (Africa-Asia)</option>
+        <option value="https://cdn3.wowza.com/1/QjRzVXJtVml5SUVx/WGJRSWxz/hls/live/playlist.m3u8">EWTN (United States)</option>
+        <option value="https://cdn3.wowza.com/1/YW5wSWZiRGd2eFlU/bGV0aVBq/hls/live/playlist.m3u8">EWTN (Canada)</option>
+        <option value="https://cdn3.wowza.com/1/T2NXeHF6UGlGbHY3/WFluRldQ/hls/live/playlist.m3u8">EWTN (Europe)</option>
+    </select>
+    <div id="player-container">
+        <iframe id="ytPlayer" frameborder="0" allowfullscreen style="display:none;"></iframe>
+        <video id="videoPlayer" controls style="display:none;"></video>
+    </div>
+
+    <script>
+        function changeChannel() {
+            var url = document.getElementById("channelSelector").value;
+            var ytPlayer = document.getElementById("ytPlayer");
+            var videoPlayer = document.getElementById("videoPlayer");
+
+            if (url.includes("youtube.com")) {
+                ytPlayer.style.display = "block";
+                videoPlayer.style.display = "none";
+                ytPlayer.src = url;
+            } else if (url.endsWith(".m3u8")) {
+                ytPlayer.style.display = "none";
+                videoPlayer.style.display = "block";
+                videoPlayer.src = url;
+                videoPlayer.play();
+            } else {
+                ytPlayer.style.display = "none";
+                videoPlayer.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
